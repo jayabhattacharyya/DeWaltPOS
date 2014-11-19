@@ -1,0 +1,131 @@
+﻿body {
+font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+font-size: 14px;
+line-height: 1.42857143;
+}
+element.style {
+}
+
+a.list-group-item li:first-child {
+border-top-right-radius: 2px;
+border-top-left-radius: 2px;
+}
+
+.list-group-item a{
+color: #555;
+position: relative;
+display: block;
+padding: 10px 15px;
+margin-bottom: -1px;
+background-color: #fff;
+border: 1px solid #ddd;
+text-decoration:none;
+}
+
+header#main-header {
+    background-color: #FCB827;
+    height: 100px;
+}
+
+
+errorclass{
+    color:red;
+}
+
+header#main-header .header-logo {
+    background-image: url('/Images/header-logo.png');
+    display: block;
+    width: 162px;
+    height: 0px;
+    padding-top: 40px;
+    overflow: hidden;
+    margin-top: 30px;
+    margin-left: 15px;
+}
+header#main-header a {
+    color: #333;
+}
+
+a{
+    text-decoration:none;
+}
+
+.modal .modal-header {
+    background-color: #FCB827;
+}
+
+
+
+.edit-block
+{
+    border: 1px solid #DDD;
+    border-radius: 4px;
+}
+
+a:hover{
+    background-color: lemonchiffon;
+}
+
+a.active{
+    background-color: #fcb827;
+}
+
+
+.btn-block {
+display: block;
+width: 100%;
+}
+.btn-sm, .btn-group-sm>.btn {
+padding: 5px 10px;
+font-size: 12px;
+line-height: 1.5;
+border-radius: 3px;
+}
+.btn-primary {
+color: #000;
+background-color: #fcb827;
+border-color: #fcb00e;
+}
+.btn {
+display: inline-block;
+margin-bottom: 0;
+font-weight: normal;
+text-align: center;
+vertical-align: middle;
+cursor: pointer;
+background-image: none;
+border: 1px solid transparent;
+white-space: nowrap;
+padding: 6px 12px;
+font-size: 14px;
+line-height: 1.42857143;
+border-radius: 2px;
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+width:80px;
+margin:5px;
+}
+
+.btn-danger {
+color: white;
+background-color: #666;
+border-color: #595959;
+}
+
+.btn-default {
+    color: #333;
+    background-color: #FFF;
+    border-color: #CCC;
+}
+
+.panel-primary {
+     border-color: #CCC;
+}
+
+.panel-primary > .panel-heading {
+    color: #000;
+    background-color: #FCB827;
+    border-color: #CCC;
+}

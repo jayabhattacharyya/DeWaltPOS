@@ -1,0 +1,59 @@
+﻿@model IEnumerable<DeWaltPOS.Models.VMRelatedProducts>
+
+<brand style="display:none">@ViewBag.brand</brand>
+<input id="product-add-search" placeholder="Enter name or SKU" class="form-control" type="search">
+<hr>
+
+    @{ var prodtype = "";}
+    @foreach (var item in Model)
+    {
+
+        if (prodtype != item.ProductType)
+        {
+            prodtype = item.ProductType;
+            @*<th style="border-right-width:10px;text-decoration:underline">@item.ProductType</th>*@
+
+        }
+
+        var tagval = "value:prod_" + @item.RelatedProductId;
+        <div class="list-group-item product-rel-choice">
+            <div class="row">
+                <div class="col-xs-1" style="display:none">
+                    <div class="NRelChkChld" name="NRelChkChld"><input type="checkbox" name="chk" value="@item.RelatedProductId" tag="nchk" /></div>
+                </div>
+                @if ((ViewBag.type != "VN"))
+                {
+                    <div class="col-xs-3">
+                        <div style="display: table">
+                            <div class="imgdisplay edit-block" style="background-color:white; width:100px;height:50px; background-image:url('@item.ThumbImage');display:table-cell;text-align:centre">
+                            </div>
+                        </div>
+                    </div>
+
+                }
+
+                <div class="col-xs-3 sku-name">
+                    @Html.DisplayFor(modelItem => item.sku)
+                </div>
+                @if ((ViewBag.type == "DW") || (ViewBag.type == "VN"))
+                {
+                    <div style="display:none">
+                        <input id="relqty" class="clsrelqty" type="text" name="@item.RelatedProductId" value="@item.Quantity" style="width:20px;display:none" />
+                    </div>
+                }
+                else
+                {
+                    <div class="col-xs-2" style="display:none">
+                        <input id="relqty" class="clsrelqty int-only" type="text" name="@item.RelatedProductId" value="@item.Quantity" style="width:40px" />
+                    </div>
+                }
+                
+                <div class="col-xs-2">
+                    <div class="add-prod-relation btn-primary" style="width:auto; text-align:center; cursor:pointer">Add</div>
+                </div>
+            </div>
+        </div>
+
+
+    }
+

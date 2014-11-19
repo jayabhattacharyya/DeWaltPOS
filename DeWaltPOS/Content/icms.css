@@ -1,0 +1,445 @@
+﻿/*form
+{
+    min-height:1px;
+}*/
+
+
+/****************************** file uploads ***********************************/
+
+.bar {
+    height: 18px;
+    background: green;
+}
+
+
+.progress-bar 
+{
+    display:none;
+    z-index:100;
+    position:absolute;
+    background-color: rgba(26, 26, 26, 0.25);
+    padding: 0;
+    height:99%;
+    width:99%;
+    /*margin: 50px 0;         */
+    border-radius: 5px;
+    box-shadow: 0 1px 5px #000 inset, 0 1px 0 #444;           
+}
+
+.progress-bar span {
+    display: inline-block;
+    height: 100%;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
+    transition: width .1s ease-in-out;    
+}
+
+.blue span {
+    background-color: #34c2e3;   
+}
+
+.orange span {
+      background-color: rgba(253, 188, 22, 0.08);
+      background-image: linear-gradient(top, #fecf23, #fd9215);  
+}   
+
+.green span {
+      background-color: #a5df41;
+      background-image: linear-gradient(top, #a5df41, #4ca916);  
+}
+
+.stripes span {
+    background-size: 30px 30px;
+   /* background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.25) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.50) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);*/
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
+                        transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
+                        transparent 75%, transparent);
+    
+    animation: animate-stripes 2s linear infinite;
+}
+
+@keyframes animate-stripes {
+    0% {background-position: 0 0;} 100% {background-position: 60px 0;}
+}
+
+.shine span {
+    position: relative;
+}
+
+.shine span::after {
+    content: '';
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #fff;
+    border-radius: 3px;
+    animation: animate-shine 2s ease-out infinite;             
+}
+
+@keyframes animate-shine {
+    0% {opacity: 0; width: 0;}
+    50% {opacity: .5;}
+    100% {opacity: 0; width: 95%;}
+}
+
+.glow span {
+    box-shadow: 0 5px 5px rgba(255, 255, 255, .7) inset, 0 -5px 5px rgba(255, 255, 255, .7) inset;    
+    animation: animate-glow 2s ease-out infinite;
+}
+
+@keyframes animate-glow {
+ 0% { box-shadow: 0 5px 5px rgba(255, 255, 255, .7) inset, 0 -5px 5px rgba(255, 255, 255, .7) inset;} 
+ 50% { box-shadow: 0 5px 5px rgba(255, 255, 255, .3) inset, 0 -5px 5px rgba(255, 255, 255, .3) inset;} 
+ 100% { box-shadow: 0 5px 5px rgba(255, 255, 255, .7) inset, 0 -5px 5px rgba(255, 255, 255, .7) inset;}
+ }
+
+/*******************************************************************************/
+
+[data-icms-image-for]
+{
+    cursor:pointer;
+}
+
+[data-icms-entity]
+{
+    float:left;
+    width:100%;
+}
+
+[data-icms-ui] *
+{
+     position:absolute;
+}
+
+[data-icms-ui-button]
+{
+    cursor:pointer;
+    position:relative;
+}
+
+/* standard ui button style 
+[data-icms-ui-button]
+{
+    background-color: #c0c0c0;
+    border: 1px none #808080;
+    cursor: pointer;
+    display: table-cell;
+    font-weight: bold;
+    height: 30px;
+    padding-top: 10px;
+
+    text-align: center;
+    vertical-align: middle;
+    width: 100px;
+} */
+
+[data-icms-ui-button="edit"],
+[data-icms-ui-button="delete"]
+{
+    display:none;
+    /*    margin-left: -92px;
+    margin-top: -50px;*/
+    left:38px;
+   height:50px;
+    float:right;
+}
+[data-icms-ui-button="edit"] img,
+[data-icms-ui-button="delete"] img
+{
+    width:92px;
+    height:50px;
+}
+[data-icms-ui-button="delete"]
+{
+        display:inline;
+}
+[data-icms-ui-button="add"] img
+{
+    width:365px;
+    height:42px;
+}
+.icms-input-error, .icms-input-adding
+{
+        font-style:italic;
+
+}
+
+.icms-input-error
+{        
+
+    color:Red;
+}
+
+.icms-input-adding
+{
+
+    color:#c0c0c0;
+}
+
+
+/*************************** generic new image css ***************************/
+
+.new-image
+{
+   padding:3px;
+}
+
+.new-image,
+.new-image .canvass
+{
+    /*margin:auto;*/
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border:1px solid #c0c0c0;
+}
+.new-image .canvass
+{
+    background-color:rgba(0, 0, 0, 0.8);
+    padding:2px;
+    position:relative;
+}
+/*.new-image .image-receiver img
+{
+    float:right;
+}*/
+.new-image .callout
+{
+    display: block;
+    float: left;
+    height: 100%;
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+    margin-bottom:100px;
+}
+.new-image .callout div
+{
+    font-family: 'FuturaW01-BoldCondensed 774890';
+    font-size: 1.2em;
+    padding-top: 50%;
+    color:rgba(255, 255, 255, 0.8);
+}
+.new-image .plus_button
+{
+    background-image: url("../images/icms/plus_button.png");
+    background-repeat: no-repeat;
+    height: 50px;
+    overflow: hidden;
+   width: 100px;
+   float:right;
+   margin-top:-53px;
+   /*margin-right:1px;*/
+   position:relative;
+}
+.thumb .new-image .plus_button
+{
+    background-image: url("../images/icms/plus_button_thumb.png");
+    height: 18px;
+   width: 35px;
+   margin-top:-21px;
+}
+.new-image .plus_button.hover {
+	background-image: url("../images/icms/plus_button_hover.png");
+}
+
+.thumb .new-image .plus_button.hover 
+{
+    background-image: url("../images/icms/plus_button_hover_thumb.png");
+}
+.new-image .plus_button a
+{
+    display: block;
+    overflow: hidden;
+    padding-top: 100px;
+}
+
+div.inline-field *
+{
+    display:inline-block;
+}
+
+div#ui-datepicker-div
+{
+    z-index:2147483584 !important;
+}
+
+
+/***************************************** Catalogue ******************************************/
+div.catalogue .callout
+{
+    margin-bottom: 120px;
+}
+div.catalogue .callout div
+{
+    padding-top: 32%;
+}
+
+/***************************************** Thumb **********************************************/
+div.thumb .callout
+{
+    margin-bottom: 17px;
+}
+div.thumb .callout div
+{
+    padding-top: 4%;
+}
+
+/***************************************** Designer *******************************************/
+div.designer .callout
+{
+    margin-bottom: 65px;
+}
+div.designer .callout div
+{
+    padding-top: 25%;
+}
+
+
+/************************************ specific settings for home banner slider items ***********************************/
+
+.slider_news [data-icms-ui-button="edit"]
+{
+    left:0;
+    top:-460px;
+}
+.slider_news [data-icms-ui-button="delete"]
+{
+     left:0;
+    top:-490px;
+    z-index:3147483583;
+}
+
+.slider_news .new-image .callout
+{
+    margin-bottom:210px;
+}
+.slider_news .new-image .callout div
+{
+    padding-top: 17%;
+    font-size:2em;
+}
+
+.slider_news.icmsmode li
+{
+    height:460px !important;
+}
+
+/************************************ specific settings for home news items ***********************************/
+.newsitems 
+{
+    padding-left:0;
+}
+.newsitems li
+{
+    padding-bottom:2px;
+    cursor:row-resize;
+}
+
+.newsitems .new-image .plus_button
+{
+    background-image: url("../img/plus_button_thumb.png");
+    background-repeat: no-repeat;    
+    height: 18px;
+    overflow: hidden;
+   width: 35px;
+   float:right;
+   margin-top:-18px;
+}
+
+.newsitems .new-image .plus_button.hover {
+	background-image: url("../img/plus_button_hover_thumb.png");
+}
+
+.newsitems .new-image .callout
+{
+    margin-bottom:19px;
+}
+.newsitems .new-image .callout div
+{
+    padding-top: 7%;
+}
+
+.newsitems input[type="text"]
+{
+    width:80%;
+}
+.newsitems .delete
+{
+    float: right;
+    left: 30px;
+    position: relative;
+    top: -21px;
+    cursor:pointer;
+}
+.newsitems .delete img
+{
+    width:46px;
+    height:25px;
+}
+.newsitems .cell .text 
+{
+    padding-left:47px !important;
+}
+#createnewsitem [data-icms-ui-button="edit"]
+{
+    left:-2px;
+}
+
+
+/************************************ specific settings for the event composition ******************************/
+.date-event label
+{
+    width:100px;
+}
+.date-event input[data-icms-date]
+{
+    width:200px;
+}
+.date-event div
+{
+   padding-left:70px;
+}
+
+
+/************************************ generic settings for the main left and right sidebar composition ***************/
+.new-image.main
+{
+    width:698px;
+    height:321px;
+    margin-bottom:0.8em;
+}
+.new-image.main .plus_button
+{
+     margin-top:-62px;
+}
+.new-image.main .callout
+{
+        margin-bottom:168px;
+}
+.new-image.main .callout div
+{
+    padding-top: 20%;
+}
+
+
+.new-image.sidebar-swatch
+{
+    width:374px;
+    height:172px;
+}
+.new-image.sidebar-swatch .plus_button
+{
+     margin-top:-77px;
+}
+.new-image.sidebar-swatch .callout
+{
+        margin-bottom:98px;
+}
+.new-image.sidebar-swatch .callout div
+{
+    padding-top: 20%;
+}

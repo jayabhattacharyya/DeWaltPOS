@@ -1,0 +1,959 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DeWaltPOSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="API_KEY_TABLE">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="api_key" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="APITimestamps">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="deviceKey" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="timestampKey" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="timestamp" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BestPracticeTypes">
+          <Key>
+            <PropertyRef Name="BestPracticeId" />
+          </Key>
+          <Property Name="BestPracticeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Brand">
+          <Key>
+            <PropertyRef Name="BrandId" />
+          </Key>
+          <Property Name="BrandId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BrandName" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="CatalogueImage">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="prodid" Type="int" />
+          <Property Name="image" Type="varchar" MaxLength="256" />
+          <Property Name="language" Type="int" Nullable="false" />
+          <Property Name="sequence" Type="int" />
+        </EntityType>
+        <EntityType Name="PanelType">
+          <Key>
+            <PropertyRef Name="PanelId" />
+          </Key>
+          <Property Name="PanelId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PanelCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="created" Type="datetime" />
+          <Property Name="modified" Type="datetime" />
+          <Property Name="productType" Type="int" />
+          <Property Name="IsBestPractice" Type="bit" />
+          <Property Name="sku" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="Brand" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="256" />
+          <Property Name="Text" Type="nvarchar(max)" />
+          <Property Name="length" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="height" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="width" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="cartonWeight" Type="int" />
+          <Property Name="cartonLength" Type="int" />
+          <Property Name="cartonWidth" Type="int" />
+          <Property Name="cartonHeight" Type="int" />
+          <Property Name="cartonUnits" Type="int" />
+          <Property Name="cartonReqd" Type="int" />
+          <Property Name="cbmReqd" Type="int" />
+          <Property Name="itemsPerLoad" Type="int" />
+          <Property Name="MOQ" Type="int" />
+          <Property Name="imageSupplied" Type="bit" />
+          <Property Name="productPlaceholder" Type="int" />
+          <Property Name="deleted" Type="bit" />
+          <Property Name="Category" Type="int" />
+          <Property Name="PanelType" Type="int" />
+          <Property Name="BestPracticeId" Type="int" />
+        </EntityType>
+        <EntityType Name="ProductType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="mountable" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RelatedFixtures">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="RelatedFixture" />
+          </Key>
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="RelatedFixture" Type="int" Nullable="false" />
+          <Property Name="Flag" Type="bit" />
+        </EntityType>
+        <EntityType Name="RelatedPanels">
+          <Key>
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="PanelId" />
+          </Key>
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="PanelId" Type="int" Nullable="false" />
+          <Property Name="Rel" Type="bit" />
+        </EntityType>
+        <EntityType Name="RelatedProducts">
+          <Key>
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="RelatedProductId" />
+          </Key>
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="RelatedProductId" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ThumbImage">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="prodid" Type="int" />
+          <Property Name="image" Type="nvarchar" MaxLength="200" />
+          <Property Name="language" Type="int" />
+        </EntityType>
+        <EntityType Name="Thumbsmall">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="prodid" Type="int" />
+          <Property Name="image" Type="nvarchar" MaxLength="250" />
+          <Property Name="sequence" Type="int" />
+        </EntityType>
+        <Association Name="FK_CatalogueImage_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="CatalogueImage" Type="Self.CatalogueImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CatalogueImage">
+              <PropertyRef Name="prodid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_BestPracticeTypes">
+          <End Role="BestPracticeTypes" Type="Self.BestPracticeTypes" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BestPracticeTypes">
+              <PropertyRef Name="BestPracticeId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="BestPracticeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Brand">
+          <End Role="Brand" Type="Self.Brand" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brand">
+              <PropertyRef Name="BrandId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="Brand" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_PanelType">
+          <End Role="PanelType" Type="Self.PanelType" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PanelType">
+              <PropertyRef Name="PanelId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="PanelType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Product1" Type="Self.Product" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Product1">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_ProductType">
+          <End Role="ProductType" Type="Self.ProductType" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="productType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RelatedFixtures_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="RelatedFixtures" Type="Self.RelatedFixtures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RelatedFixtures">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RelatedFixtures_Product1">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="RelatedFixtures" Type="Self.RelatedFixtures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RelatedFixtures">
+              <PropertyRef Name="RelatedFixture" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RelatedPanels_PanelType">
+          <End Role="PanelType" Type="Self.PanelType" Multiplicity="1" />
+          <End Role="RelatedPanels" Type="Self.RelatedPanels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PanelType">
+              <PropertyRef Name="PanelId" />
+            </Principal>
+            <Dependent Role="RelatedPanels">
+              <PropertyRef Name="PanelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RelatedPanels_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="RelatedPanels" Type="Self.RelatedPanels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RelatedPanels">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RelatedProducts_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="RelatedProducts" Type="Self.RelatedProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RelatedProducts">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RelatedProducts_Product1">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="RelatedProducts" Type="Self.RelatedProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RelatedProducts">
+              <PropertyRef Name="RelatedProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThumbImage_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="ThumbImage" Type="Self.ThumbImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ThumbImage">
+              <PropertyRef Name="prodid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Thumbsmall_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="Thumbsmall" Type="Self.Thumbsmall" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Thumbsmall">
+              <PropertyRef Name="prodid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DeWaltPOSModelStoreContainer">
+          <EntitySet Name="API_KEY_TABLE" EntityType="Self.API_KEY_TABLE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="APITimestamps" EntityType="Self.APITimestamps" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BestPracticeTypes" EntityType="Self.BestPracticeTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CatalogueImage" EntityType="Self.CatalogueImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PanelType" EntityType="Self.PanelType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductType" EntityType="Self.ProductType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RelatedFixtures" EntityType="Self.RelatedFixtures" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RelatedPanels" EntityType="Self.RelatedPanels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RelatedProducts" EntityType="Self.RelatedProducts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThumbImage" EntityType="Self.ThumbImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Thumbsmall" EntityType="Self.Thumbsmall" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CatalogueImage_Product" Association="Self.FK_CatalogueImage_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="CatalogueImage" EntitySet="CatalogueImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_BestPracticeTypes" Association="Self.FK_Product_BestPracticeTypes">
+            <End Role="BestPracticeTypes" EntitySet="BestPracticeTypes" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Brand" Association="Self.FK_Product_Brand">
+            <End Role="Brand" EntitySet="Brand" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_PanelType" Association="Self.FK_Product_PanelType">
+            <End Role="PanelType" EntitySet="PanelType" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Product" Association="Self.FK_Product_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Product1" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_ProductType" Association="Self.FK_Product_ProductType">
+            <End Role="ProductType" EntitySet="ProductType" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RelatedFixtures_Product" Association="Self.FK_RelatedFixtures_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="RelatedFixtures" EntitySet="RelatedFixtures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RelatedFixtures_Product1" Association="Self.FK_RelatedFixtures_Product1">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="RelatedFixtures" EntitySet="RelatedFixtures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RelatedPanels_PanelType" Association="Self.FK_RelatedPanels_PanelType">
+            <End Role="PanelType" EntitySet="PanelType" />
+            <End Role="RelatedPanels" EntitySet="RelatedPanels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RelatedPanels_Product" Association="Self.FK_RelatedPanels_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="RelatedPanels" EntitySet="RelatedPanels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RelatedProducts_Product" Association="Self.FK_RelatedProducts_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="RelatedProducts" EntitySet="RelatedProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RelatedProducts_Product1" Association="Self.FK_RelatedProducts_Product1">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="RelatedProducts" EntitySet="RelatedProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThumbImage_Product" Association="Self.FK_ThumbImage_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ThumbImage" EntitySet="ThumbImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Thumbsmall_Product" Association="Self.FK_Thumbsmall_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Thumbsmall" EntitySet="Thumbsmall" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DeWaltPOSModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DeWaltPOSEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="BestPracticeTypes" EntityType="DeWaltPOSModel.BestPracticeType" />
+          <EntitySet Name="ProductTypes" EntityType="DeWaltPOSModel.ProductType" />
+          <EntitySet Name="RelatedProducts" EntityType="DeWaltPOSModel.RelatedProduct" />
+          <EntitySet Name="ThumbImages" EntityType="DeWaltPOSModel.ThumbImage" />
+          <EntitySet Name="PanelTypes" EntityType="DeWaltPOSModel.PanelType" />
+          <EntitySet Name="RelatedPanels" EntityType="DeWaltPOSModel.RelatedPanel" />
+          <AssociationSet Name="FK_RelatedPanels_PanelType" Association="DeWaltPOSModel.FK_RelatedPanels_PanelType">
+            <End Role="PanelType" EntitySet="PanelTypes" />
+            <End Role="RelatedPanel" EntitySet="RelatedPanels" />
+          </AssociationSet>
+          <EntitySet Name="API_KEY_TABLE" EntityType="DeWaltPOSModel.API_KEY_TABLE" />
+          <EntitySet Name="APITimestamps" EntityType="DeWaltPOSModel.APITimestamp" />
+          <EntitySet Name="RelatedFixtures" EntityType="DeWaltPOSModel.RelatedFixture" />
+          <EntitySet Name="CatalogueImages" EntityType="DeWaltPOSModel.CatalogueImage" />
+          <EntitySet Name="Brands" EntityType="DeWaltPOSModel.Brand" />
+          <EntitySet Name="Thumbsmalls" EntityType="DeWaltPOSModel.Thumbsmall" />
+          <EntitySet Name="Products" EntityType="DeWaltPOSModel.Product" />
+          <AssociationSet Name="FK_Product_BestPracticeTypes" Association="DeWaltPOSModel.FK_Product_BestPracticeTypes">
+            <End Role="BestPracticeType" EntitySet="BestPracticeTypes" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Brand" Association="DeWaltPOSModel.FK_Product_Brand">
+            <End Role="Brand" EntitySet="Brands" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CatalogueImage_Product" Association="DeWaltPOSModel.FK_CatalogueImage_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="CatalogueImage" EntitySet="CatalogueImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_PanelType" Association="DeWaltPOSModel.FK_Product_PanelType">
+            <End Role="PanelType" EntitySet="PanelTypes" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Product" Association="DeWaltPOSModel.FK_Product_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Product1" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_ProductType" Association="DeWaltPOSModel.FK_Product_ProductType">
+            <End Role="ProductType" EntitySet="ProductTypes" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RelatedFixtures_Product" Association="DeWaltPOSModel.FK_RelatedFixtures_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="RelatedFixture" EntitySet="RelatedFixtures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RelatedFixtures_Product1" Association="DeWaltPOSModel.FK_RelatedFixtures_Product1">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="RelatedFixture" EntitySet="RelatedFixtures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RelatedPanels_Product" Association="DeWaltPOSModel.FK_RelatedPanels_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="RelatedPanel" EntitySet="RelatedPanels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RelatedProducts_Product" Association="DeWaltPOSModel.FK_RelatedProducts_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="RelatedProduct" EntitySet="RelatedProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RelatedProducts_Product1" Association="DeWaltPOSModel.FK_RelatedProducts_Product1">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="RelatedProduct" EntitySet="RelatedProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThumbImage_Product" Association="DeWaltPOSModel.FK_ThumbImage_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ThumbImage" EntitySet="ThumbImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Thumbsmall_Product" Association="DeWaltPOSModel.FK_Thumbsmall_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Thumbsmall" EntitySet="Thumbsmalls" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="BestPracticeType">
+          <Key>
+            <PropertyRef Name="BestPracticeId" />
+          </Key>
+          <Property Name="BestPracticeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Products" Relationship="DeWaltPOSModel.FK_Product_BestPracticeTypes" FromRole="BestPracticeType" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="ProductType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mountable" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="DeWaltPOSModel.FK_Product_ProductType" FromRole="ProductType" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="RelatedProduct">
+          <Key>
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="RelatedProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="RelatedProductId" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="DeWaltPOSModel.FK_RelatedProducts_Product" FromRole="RelatedProduct" ToRole="Product" />
+          <NavigationProperty Name="Product1" Relationship="DeWaltPOSModel.FK_RelatedProducts_Product1" FromRole="RelatedProduct" ToRole="Product" />
+          </EntityType>
+        <EntityType Name="ThumbImage">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="prodid" Type="Int32" />
+          <Property Name="image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="language" Type="Int32" />
+          <NavigationProperty Name="Product" Relationship="DeWaltPOSModel.FK_ThumbImage_Product" FromRole="ThumbImage" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="PanelType">
+          <Key>
+            <PropertyRef Name="PanelId" />
+          </Key>
+          <Property Name="PanelId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PanelCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RelatedPanels" Relationship="DeWaltPOSModel.FK_RelatedPanels_PanelType" FromRole="PanelType" ToRole="RelatedPanel" />
+          <NavigationProperty Name="Products" Relationship="DeWaltPOSModel.FK_Product_PanelType" FromRole="PanelType" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="RelatedPanel">
+          <Key>
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="PanelId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="PanelId" Type="Int32" Nullable="false" />
+          <Property Name="Rel" Type="Boolean" />
+          <NavigationProperty Name="PanelType" Relationship="DeWaltPOSModel.FK_RelatedPanels_PanelType" FromRole="RelatedPanel" ToRole="PanelType" />
+          <NavigationProperty Name="Product" Relationship="DeWaltPOSModel.FK_RelatedPanels_Product" FromRole="RelatedPanel" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK_RelatedPanels_PanelType">
+          <End Type="DeWaltPOSModel.PanelType" Role="PanelType" Multiplicity="1" />
+          <End Type="DeWaltPOSModel.RelatedPanel" Role="RelatedPanel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PanelType">
+              <PropertyRef Name="PanelId" />
+            </Principal>
+            <Dependent Role="RelatedPanel">
+              <PropertyRef Name="PanelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="API_KEY_TABLE">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="api_key" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="APITimestamp">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="deviceKey" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="timestampKey" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="timestamp" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="RelatedFixture">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="RelatedFixture1" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="RelatedFixture1" Type="Int32" Nullable="false" />
+          <Property Name="Flag" Type="Boolean" />
+          <NavigationProperty Name="Product" Relationship="DeWaltPOSModel.FK_RelatedFixtures_Product" FromRole="RelatedFixture" ToRole="Product" />
+          <NavigationProperty Name="Product1" Relationship="DeWaltPOSModel.FK_RelatedFixtures_Product1" FromRole="RelatedFixture" ToRole="Product" />
+          </EntityType>
+        <EntityType Name="CatalogueImage">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="prodid" Type="Int32" />
+          <Property Name="image" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="language" Type="Int32" Nullable="false" />
+          <Property Name="sequence" Type="Int32" />
+          <NavigationProperty Name="Product" Relationship="DeWaltPOSModel.FK_CatalogueImage_Product" FromRole="CatalogueImage" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Brand">
+          <Key>
+            <PropertyRef Name="BrandId" />
+          </Key>
+          <Property Name="BrandId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BrandName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Products" Relationship="DeWaltPOSModel.FK_Product_Brand" FromRole="Brand" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Thumbsmall">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="prodid" Type="Int32" />
+          <Property Name="image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="sequence" Type="Int32" />
+          <NavigationProperty Name="Product" Relationship="DeWaltPOSModel.FK_Thumbsmall_Product" FromRole="Thumbsmall" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="created" Type="DateTime" Precision="3" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="productType" Type="Int32" />
+          <Property Name="IsBestPractice" Type="Boolean" />
+          <Property Name="sku" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="Brand" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="length" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="height" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="width" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="cartonWeight" Type="Int32" />
+          <Property Name="cartonLength" Type="Int32" />
+          <Property Name="cartonWidth" Type="Int32" />
+          <Property Name="cartonHeight" Type="Int32" />
+          <Property Name="cartonUnits" Type="Int32" />
+          <Property Name="cartonReqd" Type="Int32" />
+          <Property Name="cbmReqd" Type="Int32" />
+          <Property Name="itemsPerLoad" Type="Int32" />
+          <Property Name="MOQ" Type="Int32" />
+          <Property Name="imageSupplied" Type="Boolean" />
+          <Property Name="productPlaceholder" Type="Int32" />
+          <Property Name="deleted" Type="Boolean" />
+          <Property Name="Category" Type="Int32" />
+          <Property Name="PanelType" Type="Int32" />
+          <Property Name="BestPracticeId" Type="Int32" />
+          <NavigationProperty Name="BestPracticeType" Relationship="DeWaltPOSModel.FK_Product_BestPracticeTypes" FromRole="Product" ToRole="BestPracticeType" />
+          <NavigationProperty Name="Brand1" Relationship="DeWaltPOSModel.FK_Product_Brand" FromRole="Product" ToRole="Brand" />
+          <NavigationProperty Name="CatalogueImages" Relationship="DeWaltPOSModel.FK_CatalogueImage_Product" FromRole="Product" ToRole="CatalogueImage" />
+          <NavigationProperty Name="PanelType1" Relationship="DeWaltPOSModel.FK_Product_PanelType" FromRole="Product" ToRole="PanelType" />
+          <NavigationProperty Name="Product1" Relationship="DeWaltPOSModel.FK_Product_Product" FromRole="Product" ToRole="Product1" />
+          <NavigationProperty Name="Product2" Relationship="DeWaltPOSModel.FK_Product_Product" FromRole="Product1" ToRole="Product" />
+          <NavigationProperty Name="ProductType1" Relationship="DeWaltPOSModel.FK_Product_ProductType" FromRole="Product" ToRole="ProductType" />
+          <NavigationProperty Name="RelatedFixtures" Relationship="DeWaltPOSModel.FK_RelatedFixtures_Product" FromRole="Product" ToRole="RelatedFixture" />
+          <NavigationProperty Name="RelatedFixtures1" Relationship="DeWaltPOSModel.FK_RelatedFixtures_Product1" FromRole="Product" ToRole="RelatedFixture" />
+          <NavigationProperty Name="RelatedPanels" Relationship="DeWaltPOSModel.FK_RelatedPanels_Product" FromRole="Product" ToRole="RelatedPanel" />
+          <NavigationProperty Name="RelatedProducts" Relationship="DeWaltPOSModel.FK_RelatedProducts_Product" FromRole="Product" ToRole="RelatedProduct" />
+          <NavigationProperty Name="RelatedProducts1" Relationship="DeWaltPOSModel.FK_RelatedProducts_Product1" FromRole="Product" ToRole="RelatedProduct" />
+          <NavigationProperty Name="ThumbImages" Relationship="DeWaltPOSModel.FK_ThumbImage_Product" FromRole="Product" ToRole="ThumbImage" />
+          <NavigationProperty Name="Thumbsmalls" Relationship="DeWaltPOSModel.FK_Thumbsmall_Product" FromRole="Product" ToRole="Thumbsmall" />
+        </EntityType>
+        <Association Name="FK_Product_BestPracticeTypes">
+          <End Type="DeWaltPOSModel.BestPracticeType" Role="BestPracticeType" Multiplicity="0..1" />
+          <End Type="DeWaltPOSModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BestPracticeType">
+              <PropertyRef Name="BestPracticeId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="BestPracticeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Brand">
+          <End Type="DeWaltPOSModel.Brand" Role="Brand" Multiplicity="0..1" />
+          <End Type="DeWaltPOSModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brand">
+              <PropertyRef Name="BrandId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="Brand" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CatalogueImage_Product">
+          <End Type="DeWaltPOSModel.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="DeWaltPOSModel.CatalogueImage" Role="CatalogueImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CatalogueImage">
+              <PropertyRef Name="prodid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_PanelType">
+          <End Type="DeWaltPOSModel.PanelType" Role="PanelType" Multiplicity="0..1" />
+          <End Type="DeWaltPOSModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PanelType">
+              <PropertyRef Name="PanelId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="PanelType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Product">
+          <End Type="DeWaltPOSModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="DeWaltPOSModel.Product" Role="Product1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Product1">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_ProductType">
+          <End Type="DeWaltPOSModel.ProductType" Role="ProductType" Multiplicity="0..1" />
+          <End Type="DeWaltPOSModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="productType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RelatedFixtures_Product">
+          <End Type="DeWaltPOSModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="DeWaltPOSModel.RelatedFixture" Role="RelatedFixture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RelatedFixture">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RelatedFixtures_Product1">
+          <End Type="DeWaltPOSModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="DeWaltPOSModel.RelatedFixture" Role="RelatedFixture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RelatedFixture">
+              <PropertyRef Name="RelatedFixture1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RelatedPanels_Product">
+          <End Type="DeWaltPOSModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="DeWaltPOSModel.RelatedPanel" Role="RelatedPanel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RelatedPanel">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RelatedProducts_Product">
+          <End Type="DeWaltPOSModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="DeWaltPOSModel.RelatedProduct" Role="RelatedProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RelatedProduct">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RelatedProducts_Product1">
+          <End Type="DeWaltPOSModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="DeWaltPOSModel.RelatedProduct" Role="RelatedProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RelatedProduct">
+              <PropertyRef Name="RelatedProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThumbImage_Product">
+          <End Type="DeWaltPOSModel.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="DeWaltPOSModel.ThumbImage" Role="ThumbImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ThumbImage">
+              <PropertyRef Name="prodid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Thumbsmall_Product">
+          <End Type="DeWaltPOSModel.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="DeWaltPOSModel.Thumbsmall" Role="Thumbsmall" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Thumbsmall">
+              <PropertyRef Name="prodid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DeWaltPOSModelStoreContainer" CdmEntityContainer="DeWaltPOSEntities">
+          <EntitySetMapping Name="BestPracticeTypes">
+            <EntityTypeMapping TypeName="DeWaltPOSModel.BestPracticeType">
+              <MappingFragment StoreEntitySet="BestPracticeTypes">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="BestPracticeId" ColumnName="BestPracticeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductTypes">
+            <EntityTypeMapping TypeName="DeWaltPOSModel.ProductType">
+              <MappingFragment StoreEntitySet="ProductType">
+                <ScalarProperty Name="mountable" ColumnName="mountable" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RelatedProducts">
+            <EntityTypeMapping TypeName="DeWaltPOSModel.RelatedProduct">
+              <MappingFragment StoreEntitySet="RelatedProducts">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="RelatedProductId" ColumnName="RelatedProductId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ThumbImages">
+            <EntityTypeMapping TypeName="DeWaltPOSModel.ThumbImage">
+              <MappingFragment StoreEntitySet="ThumbImage">
+                <ScalarProperty Name="language" ColumnName="language" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="prodid" ColumnName="prodid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PanelTypes">
+            <EntityTypeMapping TypeName="DeWaltPOSModel.PanelType">
+              <MappingFragment StoreEntitySet="PanelType">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PanelCode" ColumnName="PanelCode" />
+                <ScalarProperty Name="PanelId" ColumnName="PanelId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RelatedPanels">
+            <EntityTypeMapping TypeName="DeWaltPOSModel.RelatedPanel">
+              <MappingFragment StoreEntitySet="RelatedPanels">
+                <ScalarProperty Name="Rel" ColumnName="Rel" />
+                <ScalarProperty Name="PanelId" ColumnName="PanelId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="API_KEY_TABLE">
+            <EntityTypeMapping TypeName="DeWaltPOSModel.API_KEY_TABLE">
+              <MappingFragment StoreEntitySet="API_KEY_TABLE">
+                <ScalarProperty Name="api_key" ColumnName="api_key" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="APITimestamps">
+            <EntityTypeMapping TypeName="DeWaltPOSModel.APITimestamp">
+              <MappingFragment StoreEntitySet="APITimestamps">
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+                <ScalarProperty Name="timestampKey" ColumnName="timestampKey" />
+                <ScalarProperty Name="deviceKey" ColumnName="deviceKey" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RelatedFixtures">
+            <EntityTypeMapping TypeName="DeWaltPOSModel.RelatedFixture">
+              <MappingFragment StoreEntitySet="RelatedFixtures">
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
+                <ScalarProperty Name="RelatedFixture1" ColumnName="RelatedFixture" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CatalogueImages">
+            <EntityTypeMapping TypeName="DeWaltPOSModel.CatalogueImage">
+              <MappingFragment StoreEntitySet="CatalogueImage">
+                <ScalarProperty Name="sequence" ColumnName="sequence" />
+                <ScalarProperty Name="language" ColumnName="language" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="prodid" ColumnName="prodid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Brands">
+            <EntityTypeMapping TypeName="DeWaltPOSModel.Brand">
+              <MappingFragment StoreEntitySet="Brand">
+                <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Thumbsmalls">
+            <EntityTypeMapping TypeName="DeWaltPOSModel.Thumbsmall">
+              <MappingFragment StoreEntitySet="Thumbsmall">
+                <ScalarProperty Name="sequence" ColumnName="sequence" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="prodid" ColumnName="prodid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="DeWaltPOSModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="BestPracticeId" ColumnName="BestPracticeId" />
+                <ScalarProperty Name="PanelType" ColumnName="PanelType" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="productPlaceholder" ColumnName="productPlaceholder" />
+                <ScalarProperty Name="imageSupplied" ColumnName="imageSupplied" />
+                <ScalarProperty Name="MOQ" ColumnName="MOQ" />
+                <ScalarProperty Name="itemsPerLoad" ColumnName="itemsPerLoad" />
+                <ScalarProperty Name="cbmReqd" ColumnName="cbmReqd" />
+                <ScalarProperty Name="cartonReqd" ColumnName="cartonReqd" />
+                <ScalarProperty Name="cartonUnits" ColumnName="cartonUnits" />
+                <ScalarProperty Name="cartonHeight" ColumnName="cartonHeight" />
+                <ScalarProperty Name="cartonWidth" ColumnName="cartonWidth" />
+                <ScalarProperty Name="cartonLength" ColumnName="cartonLength" />
+                <ScalarProperty Name="cartonWeight" ColumnName="cartonWeight" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="width" ColumnName="width" />
+                <ScalarProperty Name="height" ColumnName="height" />
+                <ScalarProperty Name="length" ColumnName="length" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="sku" ColumnName="sku" />
+                <ScalarProperty Name="IsBestPractice" ColumnName="IsBestPractice" />
+                <ScalarProperty Name="productType" ColumnName="productType" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

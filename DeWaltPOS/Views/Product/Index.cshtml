@@ -1,0 +1,155 @@
+﻿@using DeWaltPOS.Code
+@model DeWaltPOS.Models.Product
+@{
+    ViewBag.Title = "Index";
+}
+@section scripts {
+   
+      <script  type="text/javascript"  src="~/Scripts/jquery-ui-1.10.4.custom/js/AllCustom.js?ver=123"></script>
+    
+}
+
+
+<h2 class="Top-Heading" style="width:500px">DeWalt Products</h2>
+
+
+@using (Html.BeginForm("Save", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    
+
+    <fieldset>
+
+    <p>
+        @Html.ListBoxFor(m => m.id, StandingData.AllProductDetails(), new { style = "width:500px;height:150px", id = "ProdList" })
+    </p>
+
+        <legend>Dewalt Products</legend>
+
+        <div class="tabs">
+            <ul class="tab-links">
+                <li class="active"><a href="#tab1">Description</a></li>
+                <li><a href="#tab2">Dimension</a></li>
+                <li><a href="#tab3">Image</a></li>
+                <li><a href="#tab4">Related Products</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div id="tab1" class="tab active">
+
+                    <div>
+                        <label for="name" accesskey="U">
+                            Name/Description (multi-language):
+                        </label>
+                        @Html.TextBoxFor(m => m.Description)
+                        @Html.ValidationMessageFor(m => m.Description)
+                        
+                    </div>
+
+
+                    <div>
+                        <label for="sku" accesskey="U">
+                            SKU:
+                        </label>
+                        @Html.TextBoxFor(m => m.sku)
+                        @Html.ValidationMessageFor(m => m.sku)
+                       
+                    </div>
+
+                    <div>
+                        <p></p>
+                        <label for="name" accesskey="U">
+                            Product Type:
+                        </label>
+                        @Html.DropDownListFor(m => m.productType, StandingData.AllProductTypes(), new { style = "width:200px;height:20px" })
+
+                    </div>
+
+
+                    <div>
+                        <p></p>
+                        <label for="name" accesskey="U">
+                            Best Practice:
+                        </label>
+                        <div class="superproduct">
+                            <div class="superproduct-radio">@Html.RadioButtonFor(m => m.IsBestPractice, "true")@Html.LabelFor(m => m.IsBestPractice, "Yes")</div>
+                            <br />
+                            <div class="superproduct-radio">@Html.RadioButtonFor(m => m.IsBestPractice, "false")@Html.LabelFor(m => m.IsBestPractice, "No")</div>
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <p></p>
+                        <label for="name" accesskey="U">
+                            Panel Type:
+                        </label>
+                        @Html.DropDownListFor(m => m.PanelType, StandingData.AllPanelTypes(), new { style = "width:200px;height:20px" })
+
+                    </div>
+
+                </div>
+
+                <div id="tab2" class="tab">
+                    <fieldset>
+                        <legend>Dimensions</legend>
+                        <div>
+                            <label for="length" accesskey="U">
+                                Length:
+                            </label>
+                            @Html.TextBoxFor(m => m.length)
+                        </div>
+                        <div>
+                            <label for="width" accesskey="U">
+                                Width:
+                            </label>
+                            @Html.TextBoxFor(m => m.width)
+                        </div>
+                        <div>
+                            <label for="height" accesskey="U">
+                                Height:
+                            </label>
+                            @Html.TextBoxFor(m => m.height)
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div id="tab3" class="tab">
+                    <fieldset>
+                        <legend>Image Simple Edit</legend>
+                        <h4> ThumbNail Image</h4>
+                        <div class="custpicupl" style="background-color:black">
+                            <input type="file" name="thumb" id="tfile" value="" class="editpic" />
+                            <img class="imgplus" src="~/Images/ICMS/plus_button.png" />
+                        </div>
+                        <br />
+                        <br />
+
+                        <h4> Catalogue Image</h4>
+                        <div class="custpicupl" style="background-color:black">
+                            <input type="file" name="catalg" id="cfile" value="" class="editpic" />
+                            <img class="imgplus" src="~/Images/ICMS/plus_button.png" />
+                        </div>
+                        <br />
+
+
+                        <img id="thumbimg" style="width:70px;height:70px" src=@ViewBag.Path />
+                        <label for="Path" name="lbl" id="picpath" accesskey="U">@ViewBag.Path</label>
+
+                    </fieldset>
+                </div>
+
+                <div id="tab4" class="tab">
+                    <p>Tab #4 content goes here!</p>
+                    <p>Donec pulvinar neque sed semper lacinia. Curabitur lacinia ullamcorper nibh; quis imperdiet velit eleifend ac. Donec blandit mauris eget aliquet lacinia! Donec pulvinar massa interdum risus ornare mollis. In hac habitasse platea dictumst. Ut euismod tempus hendrerit. Morbi ut adipiscing nisi. Etiam rutrum sodales gravida! Aliquam tellus orci, iaculis vel.</p>
+                </div>
+            </div>
+            <input type="submit" value="Save" /><br />
+        </div>
+
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

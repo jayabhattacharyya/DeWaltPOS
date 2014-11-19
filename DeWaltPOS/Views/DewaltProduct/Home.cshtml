@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+
+<h2>Some Best Practice Products</h2>
+@section scripts {
+
+    <script type="text/javascript" src="~/Scripts/jquery-ui-1.10.4.custom/js/AllCustom.js?ver=123"></script>
+
+}
+<div style="width:1000px">
+    <div style="width:500px;float:left">
+        @{Html.RenderAction("SuperProductDisplay", "DewaltProduct", new { super = false, id = 129 });}
+    </div>
+    <div style="width:500px;float:left">
+        @{Html.RenderAction("SuperProductDisplay", "DewaltProduct", new { super = false, id = 69 });}    </div>
+</div>
+
+<div style="width:1000px">
+    <div style="width:500px;float:left">
+        @{Html.RenderAction("SuperProductDisplay", "DewaltProduct", new { super = false, id = 132 });}   
+    </div>
+    <div style="width:500px;float:left">
+        @{Html.RenderAction("SuperProductDisplay", "DewaltProduct", new { super = false, id = 143});} 
+    </div>
+</div>

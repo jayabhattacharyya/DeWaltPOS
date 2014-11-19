@@ -1,0 +1,46 @@
+﻿@{var home = "passive";
+  var globfix = "passive";
+  var dispprod = "passive";
+  var recco = "passive";
+  var dewaltprod = "passive";
+  var resz = "passive";
+}
+@if (ViewBag.bread == "Home")
+{
+    home = "active";
+}
+
+@if (ViewBag.bread == "globfix")
+{
+    globfix = "active";
+}
+@if (ViewBag.bread == "dispprod")
+{
+    dispprod = "active";
+}
+
+@if (ViewBag.bread == "recco")
+{
+    recco = "active";
+}
+
+@if (ViewBag.bread == "dwprod")
+{
+    dewaltprod = "active";
+}
+
+@if (ViewBag.bread == "resz")
+{
+    resz = "active";
+}
+
+<div id="lftmenu" style="float:left;width:auto" class="list-group-item">
+    <a class="@home" href="@Url.Action("Index", "Home")">Home</a>
+    <a class="@dispprod" href="@Url.Action("Index", "DewaltProduct")">Display Products</a>
+    <a class="@globfix" href="@Url.Action("GlobalFixtures", "DewaltProduct")">Display Fixtures</a>
+    <a class="@recco" href="@Url.Action("SuperSkus", "DewaltProduct")">Recommendations</a>
+    <a class="@dewaltprod" href="@Url.Action("DeWaltProducts", "DewaltProduct")">DeWalt Products</a>
+
+    @*<a class="@dewaltprod" href="@Url.Action("DProduct", "DewaltProduct")">DewaltProducts</a>
+    <a class="@resz" href="@Url.Action("ResizeImages", "DewaltProduct")">ResizeImages</a>*@
+</div>

@@ -1,0 +1,190 @@
+﻿@model DeWaltPOS.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Product</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.created)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.created)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.modified)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.modified)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.productType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.productType)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IsBestPractice)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsBestPractice)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.sku)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.sku)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.length)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.length)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.height)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.height)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.width)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.width)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.price)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.price)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cartonWeight)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cartonWeight)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cartonLength)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cartonLength)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cartonWidth)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cartonWidth)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cartonHeight)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cartonHeight)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cartonUnits)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cartonUnits)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cartonReqd)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cartonReqd)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cbmReqd)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cbmReqd)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.itemsPerLoad)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.itemsPerLoad)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MOQ)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MOQ)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.imageSupplied)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.imageSupplied)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.productPlaceholder)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.productPlaceholder)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.deleted)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.deleted)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Category)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Category)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PanelType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PanelType)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BestPracticeId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BestPracticeId)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

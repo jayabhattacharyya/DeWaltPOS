@@ -1,0 +1,38 @@
+﻿@using DeWaltPOS.Code
+@{
+    ViewBag.Title = "Display Fixtures";
+}
+
+@section scripts {
+
+    <script type="text/javascript" src="~/Scripts/jquery-ui-1.10.4.custom/js/AllCustom.js?ver=123"></script>
+
+}
+
+<div class="col-sm-9 content-column">
+    <div class="page-header">
+        <h1>Display Fixtures</h1>
+    </div>
+    <div class="product-list-header">
+        <div class="visible-xs"><a href="/edit/" class="btn btn-primary btn-block top-tool-add-product-mobile"><span class="glyphicon glyphicon-plus"></span><span> Add new product</span></a></div>
+        <div class="well top-tools-well">
+            <div class="row">
+                <div class="col-sm-4 top-tool-element">
+                    <input type="text" id="srch" tag="2" class="form-control" placeholder="sku" />
+                </div>
+                <div class="col-sm-4 top-tool-element">
+                    @Html.DropDownList("paneltypesrch", StandingData.DispPanelTypes(), new { id = "paneltypesrch", style = "height:30px; width:150px" })
+                </div>
+                <div class="col-sm-4 hidden-xs text-right top-tool-element">
+                    <a href="@Url.Action("Create", "DeWaltProduct")" style="width:auto" class="btn btn-sm btn-primary btn-block">
+                        <span class="glyphicon glyphicon-plus"></span><span style="width:auto"> Add new product</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="DispProd">
+        @{Html.RenderAction("ProductDisplay", "DewaltProduct", new { type = 2 });}
+    </div>
+</div>

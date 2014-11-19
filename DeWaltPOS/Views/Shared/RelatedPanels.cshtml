@@ -1,0 +1,32 @@
+﻿@model IEnumerable<DeWaltPOS.Models.RelatedPanel>
+
+@if(Model.Count() > 0)
+{
+<div style="float:right"></div>
+
+    foreach (var item in Model)
+    {
+        if (item.PanelId == 0)
+        {
+            continue;
+        }
+        <div class="list-group-item">
+            <div class="row" style="width:auto">
+                <div class="col-xs-1" style="display:none">
+                    <input type="checkbox" name="npchk" value="@item.PanelId" />
+                </div>
+                <div class="col-xs-3">
+                    @Html.DisplayFor(modelItem => item.PanelType.PanelCode)
+                </div>
+                <div class="col-xs-5">
+                    @Html.DisplayFor(modelItem => item.PanelType.Description)
+                </div>
+                <div class="col-xs-1">
+                    <div class="remove-panel btn-danger" style="width:auto;background-color:maroon; text-align:center; cursor:pointer">Delete</div>
+                </div>
+            </div>
+        </div>
+    }
+    @*<input type="submit" value="Delete" name="Delete" />*@
+
+}

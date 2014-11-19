@@ -1,0 +1,189 @@
+﻿@using DeWaltPOS.Code
+@model DeWaltPOS.Models.Product
+
+@{
+    ViewBag.Title = "Edit";
+}
+@section scripts {
+
+    <script type="text/javascript" src="~/Scripts/jquery-ui-1.10.4.custom/js/AllCustom.js?ver=123"></script>
+
+}
+
+<editpage style="display:none">1</editpage>
+
+<h2>Edit Details for @Model.sku</h2>
+
+
+@using (Html.BeginForm("Edit", "DewaltProduct", FormMethod.Post, new { enctype = "multipart/form-data", ProdType="2" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+
+    @Html.HiddenFor(model => model.id)
+    @Html.HiddenFor(model => model.created)
+    @Html.HiddenFor(model => model.Text)
+    @Html.HiddenFor(model => model.BestPracticeId)
+    @Html.HiddenFor(model => model.IsBestPractice)
+    @Html.Hidden("type", "VN")
+
+
+
+    var thmb = Model.ThumbImages.SingleOrDefault(i => i.prodid == Model.id);
+    var ctlg = Model.CatalogueImages.SingleOrDefault(i => i.prodid == Model.id);
+
+    var thmburl = "";
+    var ctlgurl = "";
+    if (thmb != null)
+    {
+        thmburl = thmb.image;
+    }
+
+    if (ctlg != null)
+    {
+        ctlgurl = ctlg.image;
+    }
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    <p>
+        <input type="submit" value="Save" />
+    </p>
+
+    <div style="width:100%;float:left">
+
+        <div class="editor-block-text">
+            <div class="editor-label">
+                @Html.Label("Product Type")
+                <div class="editor-field">
+                    @Html.DropDownListFor(m => m.productType, StandingData.AllProductTypes(), new { id = "prodtype" })
+                    @Html.ValidationMessageFor(model => model.productType)
+                </div>
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.sku)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.sku)
+                @Html.ValidationMessageFor(model => model.sku)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Description)
+            </div>
+            <div class="editor-field">
+                @Html.TextAreaFor(model => model.Description)
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.length)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.length)
+                @Html.ValidationMessageFor(model => model.length)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.height)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.height)
+                @Html.ValidationMessageFor(model => model.height)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.width)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.width)
+                @Html.ValidationMessageFor(model => model.width)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.price)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.price)
+                @Html.ValidationMessageFor(model => model.price)
+            </div>
+
+            <div class="editor-label">
+                @Html.Label("Panel Type")
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(m => m.PanelType, StandingData.AllPanelTypes())
+                @Html.ValidationMessageFor(model => model.PanelType)
+            </div>
+        </div>
+
+        <section id="edit-related-products">
+            <div class="col-sm-14 edit-block" id="rel-prods-added">
+
+                <h3>Related DeWalt products</h3>
+                <p>These are DeWalt products that are included in this display product. </p>
+                @{Html.RenderAction("RelatedProducts", "DewaltProduct", new { super = false, id = Model.id, type = "VN" });}
+                <div id="rel-prods-temp"></div>
+            </div>
+
+            <button type="button" data-toggle="modal" data-target="#add-product-modal" class="btn btn-default btn-block" style="width:100%"><span class="glyphicon glyphicon-plus"></span><span> Add DeWalt Products</span></button>
+            <div id="add-product-modal" tab-index="-1" role="dialog" aria-hidden="true" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" data-dismiss="modal" class="close"><span aria-hidden="true">×</span><span class="sr-only">close</span></button>
+                            <h4 class="modal-title">Add DeWalt Products</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Filter products by name or SKU:</p>
+                            <div id="product-add-modal-list" style="overflow-y:scroll;height:500px">
+                                @{Html.RenderAction("NonRelatedProducts", "DewaltProduct", new { super = false, id = Model.id, type = "VN" });}
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <button type="button" data-dismiss="modal" class="btn btn-default btn-block">Cancel</button>
+                                </div>
+                                <div class="col-sm-3 col-sm-offset-7">
+                                    @*<input type="submit" value="Save"  class="btn btn-primary btn-block" />*@
+                                    <button type="button" data-dismiss="modal" id="product-relation-add-button" class="btn btn-primary btn-block">Add Product</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <div class="editor-block-image">
+            <h4> ThumbNail Image</h4>
+            <div class="custpicupl" style="background-color:black; background-image:url('@thmburl')">
+                <input type="file" name="thumb" id="tfile" value="" class="editpic" />
+                <img class="imgplus" src="~/Images/ICMS/plus_button.png" />
+            </div>
+            <br />
+            <br />
+
+            <h4> Catalogue Image</h4>
+            <div class="custpicupl" style="background-color:black; ; background-image:url('@ctlgurl')">
+                <input type="file" name="catalg" id="cfile" value="" class="editpic" />
+                <img class="imgplus" src="~/Images/ICMS/plus_button.png" />
+            </div>
+            <br />
+
+
+            <img id="thumbimg" style="width:70px;height:70px" src=@ViewBag.Path />
+            <label for="Path" name="lbl" id="picpath" accesskey="U">@ViewBag.Path</label>
+
+
+        </div>
+
+    </div>
+
+
+}
+

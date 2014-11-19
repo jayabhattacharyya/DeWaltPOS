@@ -1,0 +1,51 @@
+﻿@model IEnumerable<DeWaltPOS.Models.Product>
+
+@{
+    ViewBag.Title = "DewaltProduct";
+}
+@section scripts {
+
+    <script type="text/javascript" src="~/Scripts/jquery-ui-1.10.4.custom/js/AllCustom.js?ver=123"></script>
+
+}
+
+<h2>DewaltProduct</h2>
+
+<p>
+    <input type="text" name="sku" id="dsku" />
+    <input type="button" value="create" id="DCreate" style="border-radius:3px" />
+
+</p>
+<div>
+    <div style="float:left">
+        <table>
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.sku)
+                </th>
+
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td tag="@item.id" class="dsku">
+                        @Html.DisplayFor(modelItem => item.sku)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+    <div id="partialvw" style="height:350px;width:500px; float:right;overflow-y:scroll">
+
+
+    </div>
+</div>

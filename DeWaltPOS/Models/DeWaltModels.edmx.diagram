@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="be750455349b4a21822635548beff2ea" Name="Diagram1" ZoomLevel="72">
+        <EntityTypeShape EntityType="DeWaltPOSModel.BestPracticeType" Width="1.5" PointX="0.75" PointY="1.25" />
+        <EntityTypeShape EntityType="DeWaltPOSModel.ProductType" Width="1.5" PointX="2.75" PointY="11.375" />
+        <EntityTypeShape EntityType="DeWaltPOSModel.RelatedProduct" Width="1.5" PointX="5.25" PointY="1.625" />
+        <EntityTypeShape EntityType="DeWaltPOSModel.ThumbImage" Width="1.5" PointX="5.25" PointY="4.25" />
+        <EntityTypeShape EntityType="DeWaltPOSModel.PanelType" Width="1.5" PointX="0.5" PointY="3.25" />
+        <EntityTypeShape EntityType="DeWaltPOSModel.RelatedPanel" Width="1.5" PointX="0.5" PointY="6.125" />
+        <AssociationConnector Association="DeWaltPOSModel.FK_RelatedPanels_PanelType" />
+        <EntityTypeShape EntityType="DeWaltPOSModel.API_KEY_TABLE" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DeWaltPOSModel.APITimestamp" Width="1.5" PointX="7.375" PointY="3.75" />
+        <EntityTypeShape EntityType="DeWaltPOSModel.RelatedFixture" Width="1.5" PointX="0.625" PointY="8.5" />
+        <EntityTypeShape EntityType="DeWaltPOSModel.CatalogueImage" Width="1.5" PointX="5" PointY="7.5" />
+        <EntityTypeShape EntityType="DeWaltPOSModel.Brand" Width="1.5" PointX="6.125" PointY="10.5" />
+        <EntityTypeShape EntityType="DeWaltPOSModel.Thumbsmall" Width="1.5" PointX="8.625" PointY="5.75" />
+        <EntityTypeShape EntityType="DeWaltPOSModel.Product" Width="1.5" PointX="3" PointY="1.125" />
+        <AssociationConnector Association="DeWaltPOSModel.FK_Product_BestPracticeTypes" />
+        <AssociationConnector Association="DeWaltPOSModel.FK_Product_Brand" />
+        <AssociationConnector Association="DeWaltPOSModel.FK_CatalogueImage_Product" />
+        <AssociationConnector Association="DeWaltPOSModel.FK_Product_PanelType" />
+        <AssociationConnector Association="DeWaltPOSModel.FK_Product_Product" />
+        <AssociationConnector Association="DeWaltPOSModel.FK_Product_ProductType" />
+        <AssociationConnector Association="DeWaltPOSModel.FK_RelatedFixtures_Product" />
+        <AssociationConnector Association="DeWaltPOSModel.FK_RelatedFixtures_Product1" />
+        <AssociationConnector Association="DeWaltPOSModel.FK_RelatedPanels_Product" />
+        <AssociationConnector Association="DeWaltPOSModel.FK_RelatedProducts_Product" />
+        <AssociationConnector Association="DeWaltPOSModel.FK_RelatedProducts_Product1" />
+        <AssociationConnector Association="DeWaltPOSModel.FK_ThumbImage_Product" />
+        <AssociationConnector Association="DeWaltPOSModel.FK_Thumbsmall_Product" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

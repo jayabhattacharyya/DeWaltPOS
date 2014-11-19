@@ -1,0 +1,14 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <a href="@Url.Action("Manage", "Account", new { @class = "username", title = "Manage" })" class="btn btn-primary dropdown-toggle user-button" style="width:auto"><span class="glyphicon glyphicon-user"></span><span> @User.Identity.Name </span></a>
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+    {
+        @Html.AntiForgeryToken()
+    <button role="menuitem" tabindex="-1" class="btn btn-primary dropdown-toggle user-button"><span class="glyphicon glyphicon-off"></span><span> Log out</span></button>
+    }
+}
+else
+{
+    <a href="@Url.Action("Register", "Account")" class="btn btn-primary dropdown-toggle user-button" role="menuitem" tabindex="-1"><span class="glyphicon saw-blade"></span><span>Register</span></a>
+    <a href="@Url.Action("Login", "Account")" class="btn btn-primary dropdown-toggle user-button" role="menuitem" tabindex="-1"><span class="glyphicon glyphicon-off"></span><span> Log In</span></a>
+}

@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@*<body>
+
+    <p>First Name :<strong data-bind="text:initialName"></strong></p>
+    <p>Last Name :<strong data-bind="text:lastName"></strong></p>
+    <input data-bind="value:initialName" />
+    <input data-bind="value:lastName" />
+
+    <p>First Name :<strong data-bind="text:initialName"></strong></p>
+    <p>Last Name :<strong data-bind="text:lastName"></strong></p>
+    <input data-bind="value:initialName" />
+    <input data-bind="value:lastName" />
+    <script type="text/ecmascript">
+
+        function koapp() {
+            this.initialName = ko.observable();
+            this.lastName = ko.observable();
+        };
+        ko.applyBindings(new koapp());
+    </script>
+</body>*@ 
+
+@section scripts {
+
+<script type="text/javascript" src="~/Scripts/jquery-ui-1.10.4.custom/js/AllCustom.js?ver=123"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+
+
+}
+
+
+
+    Input field: <input type="textbox" id="txtboxToFilter" style="width:200px" class="num"/>
+
+Razor Field New:  @Html.TextBox("width", "3", new { @placeholder = "Width in mm", @class = "num" })
+
+
+
+
+
+
+
+

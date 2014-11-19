@@ -1,0 +1,49 @@
+﻿@model IEnumerable<DeWaltPOS.Models.Product>
+
+<div class="product-list">
+
+@{ var BPType = "";}
+@foreach (var item in Model)
+{
+    var thmb = item.Thumbsmalls.LastOrDefault(i => i.prodid == item.id);
+    var thmburl = "";
+    if (thmb != null)
+    {
+        thmburl = thmb.image;
+    }
+
+    if (BPType != item.BestPracticeType.Description)
+    {
+        BPType = item.BestPracticeType.Description;
+
+        <h3 class="product-list-title">
+            @item.BestPracticeType.Description
+            <hr class="section-title-hr">
+        </h3>
+
+    }
+
+        <div class="row product-list-item">
+            <div class="col-sm-3 product-list-col-thumbnail">
+                <a href="@Url.Action("SuperSkuEdit", "DewaltProduct", new { id = item.id })">
+                    <div style="display: table;">
+                        <div style="width:100px;height:100px;background-color:white;display: table-cell;text-align: center;vertical-align: middle;">
+                            <img class="imgplus" src="@thmburl" />
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-7 product-list-col-description">
+                <h4 class="product-list-item-title">@Html.DisplayFor(modelItem => item.Description)</h4>
+                <p class="product-list-item-sku"> @Html.DisplayFor(modelItem => item.sku)</p>
+            </div>
+            <div class="col-sm-2 product-list-col-edit"><a href="@Url.Action("SuperSkuEdit", "DewaltProduct", new { id = item.id })" class="btn btn-sm btn-primary btn-block product-list-item-btn-edit">Edit</a><a href="@Url.Action("Delete", "DewaltProduct", new {id = item.id })" class="btn btn-sm btn-danger btn-block product-list-item-btn-edit">Delete</a></div>
+        </div>
+        <hr>
+
+    }
+
+</div>
+
+
+

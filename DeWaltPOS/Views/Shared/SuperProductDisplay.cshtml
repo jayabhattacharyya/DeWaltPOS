@@ -1,0 +1,6 @@
+﻿
+
+
+<a href="@Url.Action("Edit", "DewaltProduct", new { id = ViewBag.id })"> <img class="imgplus" src="@ViewBag.img" style="width:400px;height:400px" /></a>
+
+@{Html.RenderAction("RelProdDisplayPanel", "DewaltProduct", new { super = false, id = ViewBag.id });}

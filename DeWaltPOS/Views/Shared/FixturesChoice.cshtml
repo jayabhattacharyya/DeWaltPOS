@@ -1,0 +1,42 @@
+﻿@model IEnumerable<DeWaltPOS.Models.VMRelatedProducts>
+
+<div style="float:left"><h3>Add Related Products</h3></div>
+<div style="float:right"><input type="submit" value="Add" name="Add" /></div>
+<table>
+    <tr style="border-style:solid;border-width:1px;border-color:darkgray">
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.sku)
+        </th>
+        <th>@Html.CheckBox("AllRelated", new { id = "NRelChk" })</th>
+        <th>Qty</th>
+    </tr>
+
+    @{ var prodtype = "";}
+    @foreach (var item in Model)
+    {
+
+        if (prodtype != item.ProductType)
+        {
+            prodtype = item.ProductType;
+            <tr><th style="border-right-width:10px;text-decoration:underline">@item.ProductType</th></tr>
+
+        }
+
+        <tr>
+            <td>
+                <a href="@Url.Action("Edit", "DewaltProduct", new {id = item.RelatedProductId })"> <img class="imgplus" src="@item.ThumbImage" style="width:50px;height:50px" /></a>
+
+            </td>
+            <td>
+                
+                    @Html.DisplayFor(modelItem => item.sku)
+               
+            </td>
+            <td><div class="NRelChkChld" name="NRelChkChld"><input type="checkbox" name="chk" value="@item.RelatedProductId" /></div></td>
+            <td ><input type="text" name="@item.RelatedProductId" value="@item.Quantity" style="width:20px" /></td>
+
+        </tr>
+    }
+
+</table>

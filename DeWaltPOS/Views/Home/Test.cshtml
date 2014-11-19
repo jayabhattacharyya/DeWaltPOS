@@ -1,0 +1,121 @@
+﻿@using DeWaltPOS.Code
+@{
+    ViewBag.Title = "Dewalt Display Products";
+}
+@section scripts {
+
+    <script type="text/javascript" src="~/Scripts/jquery-ui-1.10.4.custom/js/AllCustom.js?ver=123"></script>
+
+}
+<div class="col-sm-9 content-column">
+    <div class="page-header">
+        <h1>Display products</h1>
+    </div>
+    <div class="product-list-header">
+        <div class="visible-xs"><a href="/edit/" class="btn btn-primary btn-block top-tool-add-product-mobile"><span class="glyphicon glyphicon-plus"></span><span> Add new product</span></a></div>
+        <div class="well top-tools-well">
+            <div class="row">
+                <div class="col-sm-4 top-tool-element">
+                    <input type="text" id="srch" tag="3" class="form-control" placeholder="sku" />
+                </div>
+                <div class="col-sm-4 top-tool-element">
+                    @Html.DropDownList("prodtypesrch", StandingData.DispProductTypes(), new { id = "prodtypesrch", @class = "form-control" })
+                </div>
+                <div class="col-sm-4 hidden-xs text-right top-tool-element">
+                    <a href="@Url.Action("Create", "DeWaltProduct")" style="width:auto" class="btn btn-sm btn-primary btn-block">
+                        <span class="glyphicon glyphicon-plus"></span><span style="width:auto"> Add new product</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="DispProd">
+        @{Html.RenderAction("ProductDisplay", "DewaltProduct", new { type = 3 });}
+    </div>
+
+    @*<div class="product-list">
+        <h3 class="product-list-title">
+            Fixtures
+            <hr class="section-title-hr">
+        </h3>
+        <div class="row product-list-item">
+            <div class="col-sm-3 product-list-col-thumbnail">
+                <div class="product-list-thumbnail-wrapper"><a href="/displayProducts/edit/globalfixtures/" class="thumbnail product-thumbnail"><img src="http://213.171.198.221/Images/Catalogue/catalogue_MP00649-QZ.PNG"></a></div>
+            </div>
+            <div class="col-sm-7 product-list-col-description">
+                <h4 class="product-list-item-title">1000mm Low Voltage Lighting Soffit (2 lamp)</h4>
+                <p class="product-list-item-sku">MP00649-QZ</p>
+            </div>
+            <div class="col-sm-2 product-list-col-edit"><a href="/displayProducts/edit/globalfixtures/" class="btn btn-sm btn-primary btn-block product-list-item-btn-edit">Edit</a><a href="#" class="btn btn-sm btn-danger btn-block product-list-item-btn-edit">Delete</a></div>
+        </div>
+        <hr>
+        <div class="row product-list-item">
+            <div class="col-sm-3 product-list-col-thumbnail">
+                <div class="product-list-thumbnail-wrapper"><a href="/displayProducts/edit/globalfixtures/" class="thumbnail product-thumbnail"><img src="http://213.171.198.221/Images/Catalogue/catalogue_MP00649-QZ.PNG"></a></div>
+            </div>
+            <div class="col-sm-7 product-list-col-description">
+                <h4 class="product-list-item-title">1000mm Low Voltage Lighting Soffit (2 lamp)</h4>
+                <p class="product-list-item-sku">MP00649-QZ</p>
+            </div>
+            <div class="col-sm-2 product-list-col-edit"><a href="/displayProducts/edit/globalfixtures/" class="btn btn-sm btn-primary btn-block product-list-item-btn-edit">Edit</a><a href="#" class="btn btn-sm btn-danger btn-block product-list-item-btn-edit">Delete</a></div>
+        </div>
+        <hr>
+        <div class="row product-list-item">
+            <div class="col-sm-3 product-list-col-thumbnail">
+                <div class="product-list-thumbnail-wrapper"><a href="/displayProducts/edit/displayProducts/" class="thumbnail product-thumbnail"><img src="http://213.171.198.221/Images/Catalogue/catalogue_MP00649-QZ.PNG"></a></div>
+            </div>
+            <div class="col-sm-7 product-list-col-description">
+                <h4 class="product-list-item-title">1000mm Low Voltage Lighting Soffit (2 lamp)</h4>
+                <p class="product-list-item-sku">MP00649-QZ</p>
+            </div>
+            <div class="col-sm-2 product-list-col-edit"><a href="/displayProducts/edit/displayProducts/" class="btn btn-sm btn-primary btn-block product-list-item-btn-edit">Edit</a><a href="#" class="btn btn-sm btn-danger btn-block product-list-item-btn-edit">Delete</a></div>
+        </div>
+        <hr>
+        <div class="row product-list-item">
+            <div class="col-sm-3 product-list-col-thumbnail">
+                <div class="product-list-thumbnail-wrapper"><a href="/displayProducts/edit/displayProducts/" class="thumbnail product-thumbnail"><img src="http://213.171.198.221/Images/Catalogue/catalogue_MP00649-QZ.PNG"></a></div>
+            </div>
+            <div class="col-sm-7 product-list-col-description">
+                <h4 class="product-list-item-title">1000mm Low Voltage Lighting Soffit (2 lamp)</h4>
+                <p class="product-list-item-sku">MP00649-QZ</p>
+            </div>
+            <div class="col-sm-2 product-list-col-edit"><a href="/displayProducts/edit/displayProducts/" class="btn btn-sm btn-primary btn-block product-list-item-btn-edit">Edit</a><a href="#" class="btn btn-sm btn-danger btn-block product-list-item-btn-edit">Delete</a></div>
+        </div>
+        <hr>
+        <div class="row product-list-item">
+            <div class="col-sm-3 product-list-col-thumbnail">
+                <div class="product-list-thumbnail-wrapper"><a href="/displayProducts/edit/displayProducts/" class="thumbnail product-thumbnail"><img src="http://213.171.198.221/Images/Catalogue/catalogue_MP00649-QZ.PNG"></a></div>
+            </div>
+            <div class="col-sm-7 product-list-col-description">
+                <h4 class="product-list-item-title">1000mm Low Voltage Lighting Soffit (2 lamp)</h4>
+                <p class="product-list-item-sku">MP00649-QZ</p>
+            </div>
+            <div class="col-sm-2 product-list-col-edit"><a href="/displayProducts/edit/displayProducts/" class="btn btn-sm btn-primary btn-block product-list-item-btn-edit">Edit</a><a href="#" class="btn btn-sm btn-danger btn-block product-list-item-btn-edit">Delete</a></div>
+        </div>
+        <hr>
+        <hr>
+        <div class="row product-list-item">
+            <div class="col-sm-3 product-list-col-thumbnail">
+                <div class="product-list-thumbnail-wrapper"><a href="/displayProducts/edit/displayProducts/" class="thumbnail product-thumbnail"><img src="http://213.171.198.221/Images/Catalogue/catalogue_MP00649-QZ.PNG"></a></div>
+            </div>
+            <div class="col-sm-7 product-list-col-description">
+                <h4 class="product-list-item-title">1000mm Low Voltage Lighting Soffit (2 lamp)</h4>
+                <p class="product-list-item-sku">MP00649-QZ</p>
+            </div>
+            <div class="col-sm-2 product-list-col-edit"><a href="/displayProducts/edit/displayProducts/" class="btn btn-sm btn-primary btn-block product-list-item-btn-edit">Edit</a><a href="#" class="btn btn-sm btn-danger btn-block product-list-item-btn-edit">Delete</a></div>
+        </div>
+        <hr>
+        <div class="row product-list-item">
+            <div class="col-sm-3 product-list-col-thumbnail">
+                <div class="product-list-thumbnail-wrapper"><a href="/displayProducts/edit/displayProducts/" class="thumbnail product-thumbnail"><img src="http://213.171.198.221/Images/Catalogue/catalogue_MP00649-QZ.PNG"></a></div>
+            </div>
+            <div class="col-sm-7 product-list-col-description">
+                <h4 class="product-list-item-title">1000mm Low Voltage Lighting Soffit (2 lamp)</h4>
+                <p class="product-list-item-sku">MP00649-QZ</p>
+            </div>
+            <div class="col-sm-2 product-list-col-edit"><a href="/displayProducts/edit/displayProducts/" class="btn btn-sm btn-primary btn-block product-list-item-btn-edit">Edit</a><a href="#" class="btn btn-sm btn-danger btn-block product-list-item-btn-edit">Delete</a></div>
+        </div>
+    </div>*@
+</div>
+

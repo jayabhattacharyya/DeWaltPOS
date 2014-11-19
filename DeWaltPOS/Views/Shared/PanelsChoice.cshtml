@@ -1,0 +1,26 @@
+﻿@model IEnumerable<DeWaltPOS.Models.PanelType>
+
+@Html.CheckBox("AllRelated", new { id = "NRelPnlChk" }) <span>Check all</span>
+
+@foreach (var item in Model) {
+    if(item.PanelId == 0)
+    {
+        continue;
+    }
+
+    <div class="list-group-item">
+        <div class="row">
+            <div class="col-xs-1">
+                <div class="NRelPnlChkChld" name="NRelPnlChkChld"><input type="checkbox" name="pchk" value="@item.PanelId" /></div>
+            </div>
+            <div class="col-xs-3">
+                @Html.DisplayFor(modelItem => item.PanelCode)
+            </div>
+            <div class="col-xs-7">
+                @Html.DisplayFor(modelItem => item.Description)
+            </div>
+        </div>
+    </div>
+}
+
+

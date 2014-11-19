@@ -1,0 +1,20 @@
+﻿@model DeWaltPOS.Models.PanelType
+
+
+<div class="list-group-item">
+
+    <div class="row" style="width:auto">
+        <div class="col-xs-1" style="display:none">
+            <input type="checkbox" name="nchk" value="@Model.PanelId" />
+        </div>
+        <div class="col-xs-3">
+            @Html.DisplayFor(m => m.PanelCode)
+        </div>
+        <div class="col-xs-5">
+            @Html.DisplayFor(m => m.Description)
+        </div>
+        <div class="col-xs-1">
+            <div class="temp-remove-panel btn-danger" style="width:auto;background-color:maroon; text-align:center; cursor:pointer">Delete</div>
+        </div>
+    </div>
+</div>
